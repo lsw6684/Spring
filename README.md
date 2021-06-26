@@ -7,6 +7,7 @@ Spring Foundation
 - [Test Library](#test-library)
 - [Dependencies](#dependencies)
 - [Embedded server](#embedded-server)
+- [Business Requirement](#business-requirement)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -41,4 +42,23 @@ Spring Foundation
 
 ## Embedded server
 Tomcat(WAS) : Apache Tomcat이라고도 불리는 오픈소스 Web Application Server입니다. 
-<p align="center"><img src="images/tomcat.png" width="60%"></p>
+<p align="center"><img src="images/tomcat.png" width="70%"></p>
+
+## Business Requirement
+- 데이터 : 회원ID, 이름
+- 기능 : 회원 등록, 조회
+- 아직 데이터 저장소가 선정되지 않은 상태
+- **Web Application Architecture**
+<p align="center"><img src="images/architecture.png" width="70%"></p>
+
+    1. 컨트롤러 : 웹 MVC의 Controller
+    2. 서비스 : 핵심 비즈니스 로직 구현(e.g. 중복 가입 불가)
+    3. 리포지토리 : DB 접근, 도메인 객체를 DB에 저장하고 관리
+    4. 도메인 : 비즈니스 도메인 객체(e.g. 회원, 주문, 쿠폰 등 주로 DB에 저장하고 관리)
+
+- **Class Dependency**
+<p align="center"><img src="images/cd.png" width="70%"></p>
+
+    1. DB가 선정되지 않았기 때문에 Interface로 구현 클래스를 변경할 수 있도록 설계
+    2. DB는 RDB, NoSQL 등을 고려중인 상황.
+    3. 초기 개발 단계에서는 구현체로 가벼운 메모리 기반의 DB 사용.
