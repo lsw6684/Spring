@@ -8,6 +8,7 @@ Spring Foundation
 - [Dependencies](#dependencies)
 - [Embedded server](#embedded-server)
 - [Business Requirement](#business-requirement)
+- [Spring Bean](#spring-bean)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -62,3 +63,15 @@ Tomcat(WAS) : Apache Tomcat이라고도 불리는 오픈소스 Web Application S
     1. DB가 선정되지 않았기 때문에 Interface로 구현 클래스를 변경할 수 있도록 설계
     2. DB는 RDB, NoSQL 등을 고려중인 상황.
     3. 초기 개발 단계에서는 구현체로 가벼운 메모리 기반의 DB 사용.
+
+## Spring Bean
+Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로 생성하는 객체를 의미하는 것이 아닌 ApplicationContext.getBean()으로 얻어질 수 있는 객체를 의미합니다.
+- 생성자에 `@Autowired`가 있으면 스프링이 연관된 객체를 스프링 컨테이너에서 찾아서 넣어줍니다. 이렇게 객체 의존관계를 외부에서 넣어주는 것을 DI(Dependency Injection), 의존성 주입이라 합니다.
+
+### 컴포넌트 스캔 원리
+`@Component` 애노테이션이 있으면 스프링 빈으로 자동 등록됩니다.
+`@Controller` 컨트롤러가 스프링 빈으로 자동 등록된 이유도 컴포넌트 스캔 때문입니다..
+`@Component`를 포함하는 다음 애노테이션도 스프링 빈으로 자동 등록됩니다.
+- `@Controller`
+- `@Service`
+- `@Repository`
