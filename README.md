@@ -9,6 +9,7 @@ Spring Foundation
 - [Embedded server](#embedded-server)
 - [Business Requirement](#business-requirement)
 - [Spring Bean](#spring-bean)
+- [Access to the Database](#access-to-the-database)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -75,3 +76,11 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - `@Controller`
 - `@Service`
 - `@Repository`
+
+## Access to the Database
+- H2 Database <br />
+별도의 설치 과정 없이 사용하는 RDBMS로 JDBC API를 지원하며 표준 SQL을 사용합니다. 개발 단계의 테스트 DB로 이용되곤 합니다.
+- 순수 JDBC
+- 스프링 JDBC Template
+- JPA
+- Spring Data JPA

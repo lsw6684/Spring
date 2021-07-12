@@ -40,4 +40,5 @@ public class MemberController {
         model.addAttribute("members", member);
         return "members/memberList";
     }
+
 }
