@@ -80,7 +80,15 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 ## Access to the Database
 - H2 Database <br />
 별도의 설치 과정 없이 사용하는 RDBMS로 JDBC API를 지원하며 표준 SQL을 사용합니다. 개발 단계의 테스트 DB로 이용되곤 합니다.
+    - https://www.h2database.com
+    - H2 console
 - 순수 JDBC
+    - build.gradle 파일에 jdbc, h2 DB 관련 라이브러리 추가
+        ```
+        implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+        runtimeOnly 'com.h2database:h2'
+        ```
+
 - 스프링 JDBC Template
 - JPA
 - Spring Data JPA
