@@ -10,6 +10,7 @@ Spring Foundation
 - [Business Requirement](#business-requirement)
 - [Spring Bean](#spring-bean)
 - [Access to the Database](#access-to-the-database)
+- [스프링 설정 이미지](#스프링-설정-이미지)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -92,3 +93,10 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - 스프링 JDBC Template
 - JPA
 - Spring Data JPA
+
+## 스프링 설정 이미지
+<p align="center"><img src="images/tomcat.png" width="60%"></p>
+
+- 개방-폐쇄 원칙(OCP, Open-Closed Principle)
+    - 확장에는 열려있고 수정, 변경에는 닫혀있습니다.
+- 스프링의 DI(Dependencies Injection)을 사용하면 **기존 코드를 전혀 손대지 않고 설정만으로 구현 클래스를 변경할 수 있습니다.**
