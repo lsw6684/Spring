@@ -11,6 +11,7 @@ Spring Foundation
 - [Spring Bean](#spring-bean)
 - [Access to the Database](#access-to-the-database)
 - [스프링 설정 이미지](#스프링-설정-이미지)
+- [스프링 통합 테스트](#스프링-통합-테스트)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -100,3 +101,8 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - 개방-폐쇄 원칙(OCP, Open-Closed Principle)
     - 확장에는 열려있고 수정, 변경에는 닫혀있습니다.
 - 스프링의 DI(Dependencies Injection)을 사용하면 **기존 코드를 전혀 손대지 않고 설정만으로 구현 클래스를 변경할 수 있습니다.**
+
+## 스프링 통합 테스트
+- @SpringBootTest : 스프링 컨테이너와 테스트를 함께 실행합니다.
+- @Transactional : 테스트 케이스에 해당 애노테이션이 있다면, 테스트 시작 전에 트랜잭션을 시작하고, 테스트 완료 후에 **롤백**으로 DB를 복구하여 다음 테스트에 영향을 주지 않습니다.
+- @Commit : 테스트 완료 후, 트랜잭션을 Commit합니다.
