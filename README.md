@@ -12,6 +12,7 @@ Spring Foundation
 - [Access to the Database](#access-to-the-database)
 - [스프링 설정 이미지](#스프링-설정-이미지)
 - [스프링 통합 테스트](#스프링-통합-테스트)
+- [스프링 JdbcTemplate](#스프링-jdbctemplate)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -106,3 +107,7 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - @SpringBootTest : 스프링 컨테이너와 테스트를 함께 실행합니다.
 - @Transactional : 테스트 케이스에 해당 애노테이션이 있다면, 테스트 시작 전에 트랜잭션을 시작하고, 테스트 완료 후에 **롤백**으로 DB를 복구하여 다음 테스트에 영향을 주지 않습니다.
 - @Commit : 테스트 완료 후, 트랜잭션을 Commit합니다.
+
+## 스프링 JdbcTemplate
+- 순수 Jdbc와 동일한 환경설정을 하면 됩니다.
+- 스프링 JdbcTemplate과 MyBatis같은 라이브러리는 JDBC API에서 본 반복 코드를 대부분 제거해 주지만, SQL은 직접 작성해야 합니다.
