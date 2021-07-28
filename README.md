@@ -13,6 +13,7 @@ Spring Foundation
 - [스프링 설정 이미지](#스프링-설정-이미지)
 - [스프링 통합 테스트](#스프링-통합-테스트)
 - [스프링 JdbcTemplate](#스프링-jdbctemplate)
+- [JPA](#jpa)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -111,3 +112,17 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 ## 스프링 JdbcTemplate
 - 순수 Jdbc와 동일한 환경설정을 하면 됩니다.
 - 스프링 JdbcTemplate과 MyBatis같은 라이브러리는 JDBC API에서 본 반복 코드를 대부분 제거해 주지만, SQL은 직접 작성해야 합니다.
+
+## JPA
+- JPA는 기존의 반복 코드는 물론이고, 기본적인 SQL도 JPA가 직접 만들어서 실행합니다.
+- JPA를 사용하면 SQL과 데이터 중심의 설계에서 객체 중심의 설계로 패러다임을 전환할 수 있습니다.
+- JPA를 사용하면 개발 생산성을 크게 높일 수 있습니다.
+- dependency
+    ```java
+    	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // JPA, JDBC 등을 포함    
+    ```
+1. Entity를 매핑합니다. - `@Entity`
+2. PK를 매핑합니다.
+3. IDENTITY를 설정하여 자동으로 ID가 매핑 되도록 합니다. - `@Id @GeneratedValue(strategy = GenerationType.IDENTITY)`
+4. 서비스 계층에 트랜잭션을 적용합니다. - `@Transactional`
