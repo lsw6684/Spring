@@ -126,3 +126,5 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 2. PK를 매핑합니다.
 3. IDENTITY를 설정하여 자동으로 ID가 매핑 되도록 합니다. - `@Id @GeneratedValue(strategy = GenerationType.IDENTITY)`
 4. 서비스 계층에 트랜잭션을 적용합니다. - `@Transactional`
+### 스프링 데이터 JPA
+반복 개발해온 기본 CRUD기능을 포함하여 Repository에 구현 클래스 없이 인터페이스 만으로 개발이 가능합니다.
