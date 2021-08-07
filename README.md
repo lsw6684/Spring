@@ -14,6 +14,7 @@ Spring Foundation
 - [스프링 통합 테스트](#스프링-통합-테스트)
 - [스프링 JdbcTemplate](#스프링-jdbctemplate)
 - [JPA](#jpa)
+- [AOP](#aop)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -128,3 +129,10 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 4. 서비스 계층에 트랜잭션을 적용합니다. - `@Transactional`
 ### 스프링 데이터 JPA
 반복 개발해온 기본 CRUD기능을 포함하여 Repository에 구현 클래스 없이 인터페이스 만으로 개발이 가능합니다.
+
+## AOP
+Aspect Oriented Programming, 관점 지향 프로그래밍
+### AOP가 필요한 상황
+- 모든 메소드의 호출 시간을 측정할 때
+- 공통 관심 사항(cross-cutting concern) vs 핵심 관심 사항(core concern)
+- 회원 가입 시간, 회원 조회 시간 측정
