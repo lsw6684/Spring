@@ -6,6 +6,7 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.MutableAttributeSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,17 +26,9 @@ public class MemberService {
     public Long join(Member member) {
         // 중복 이름 허용 불가
 
-        long start = System.currentTimeMillis();
-
-        try {
-            validateDuplicateMember(member);    // 중복 회원 검증
-            memberRepository.save(member);
-            return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join " + timeMs + "ms");
-        }
+        validateDuplicateMember(member);    // 중복 회원 검증
+        memberRepository.save(member);
+        return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
@@ -56,4 +49,5 @@ public class MemberService {
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
+    
 }
