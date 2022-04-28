@@ -1,5 +1,5 @@
 # Spring
-Spring Foundation 
+자바 언어 기반의 프레임워크로 객체 지향 언어가 가진 강력한 특징을 쉽게 활용할 수 있게 도와주는 프레임워크입니다.
 
 ### Spring Boot - https://start.spring.io/
 - [Maven vs Gradle](#maven-vs-gradle)
@@ -26,6 +26,7 @@ Spring Foundation
 - Groovy 문법 사용.
 
 ## Spring Boot Library
+스프링을 편하게 사용할 수 있도록 하는 라이브러리로, 최근엔 기본으로 사용될 정도로 보편화되어있습니다. 별도의 웹 서버를 설치 안 해도 되며 외부 라이브러리 버전 또한 자동으로 맵핑해 줍니다.
 - spring-boot-starter-web
     - spring-boot-starter-tomcat : 톰캣(WAS)
     - spring-webmvc : 스프링 웹 MVC
@@ -76,7 +77,7 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 
 ### 컴포넌트 스캔 원리
 `@Component` 애노테이션이 있으면 스프링 빈으로 자동 등록됩니다.
-`@Controller` 컨트롤러가 스프링 빈으로 자동 등록된 이유도 컴포넌트 스캔 때문입니다..
+`@Controller` 컨트롤러가 스프링 빈으로 자동 등록된 이유도 컴포넌트 스캔 때문입니다.
 `@Component`를 포함하는 다음 애노테이션도 스프링 빈으로 자동 등록됩니다.
 - `@Controller`
 - `@Service`
