@@ -30,6 +30,19 @@
 - DIP, Dependeny Inversion Principle : 의존관계 역전 원칙
     - **추상화(역할)에 의존하며, 구체화(구현)에 의존하지 않습니다.**
     - ***특정 배우에 맞게 연극을 준비했기 때문에, 배우가 바뀌면 연극이 불가능 하다는 것이 DIP 위반입니다.***
+
+## IoC, DI, 그리고 컨테이너
+- IoC, Inversion of Control, 제어의 역전
+    - **클라이언트 구현 객체가 스스로** 서버 구현 객체를 생성/연결/실행 하여, 프로그램의 제어 흐름을 스스로 정의하는 것이 아니라 **외부에서 관리** 하는 것을 의미합니다.
+
+- DI, Dependency Injection, 의존관계 주입
+    - **정적인 클래스 의존 관계**와 실행 시점에 셜정되는 **동적인 객체(인스턴스) 의존 관계**를 분리해서 생각해야 합니다.
+    - DI를 사용하면, 정적인 클래스 의존 관계를 변경하지 않고, 동적인 객체(인스턴스) 의존 관계를 쉽게 변경할 수 있습니다.
+- IoC 컨테이너, DI 컨테이너
+    - 객체를 생성하고 관리하면서 의존 관계를 연결해 주는 것을 의미합니다.
+    
+
+
 ### Spring Boot - https://start.spring.io/
 - [Maven vs Gradle](#maven-vs-gradle)
 - [Spring Boot Library](#spring-boot-library)
