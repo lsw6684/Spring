@@ -123,7 +123,7 @@ Tomcat(WAS) : Apache Tomcat이라고도 불리는 오픈소스 Web Application S
 Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로 생성하는 객체를 의미하는 것이 아닌 ApplicationContext.getBean()으로 얻어질 수 있는 객체를 의미합니다.
 - 생성자에 `@Autowired`가 있으면 스프링이 연관된 객체를 스프링 컨테이너에서 찾아서 넣어줍니다. 이렇게 객체 의존관계를 외부에서 넣어주는 것을 DI(Dependency Injection), 의존성 주입이라 합니다.
 
-### [빈 출력](#https://github.com/lsw6684/Spring/tree/main/core/core/src/test/java/hello/core/beanfind/ApplicationContextInfoTest.java)
+### [빈 출력](https://github.com/lsw6684/Spring/tree/main/core/core/src/test/java/hello/core/beanfind/ApplicationContextInfoTest.java)
 - 모든 빈
     - `ac.getBeanDefinitionNames()` : 스프링에 등록된 모든 빈 이름 조회
     - `ac.getBean` : 빈 이름으로 빈 객체(인스턴스) 조회
