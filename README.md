@@ -132,6 +132,12 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
         - `ROLE_APPLICATION` : 일반적으로 사용자가 정의한 빈
         - `ROLE INFRASTRUCTURE` : 스프링이 내부에서 사용하는 빈
 
+### [빈 조회](https://github.com/lsw6684/Spring/tree/main/core/core/src/test/java/hello/core/beanfind/ApplicationContextBasicFindTest.java)
+스프링 컨테이너에서 스프링 빈을 찾는 가장 기본적인 조회 방법입니다.
+- `ac.getBean(빈이름, 타입)`
+- `ac.getBean(타입)`
+    - 조회 대상 스프링 빈이 없으면 예외 발생
+        - `NoSuchBeanDefinitionException: No bean named 'xxx' available`
 
 
 
