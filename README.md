@@ -138,11 +138,33 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - `ac.getBean(타입)`
     - 조회 대상 스프링 빈이 없으면 예외 발생
         - `NoSuchBeanDefinitionException: No bean named 'xxx' available`
-- **타입으로 조회 시, 동일 타입이 둘 이상인 경우**
+- [타입으로 조회 시, 동일 타입이 둘 이상인 경우](https://github.com/lsw6684/Spring/tree/main/core/core/src/test/java/hello/core/beanfind/ApplicationContextSameBeanFindTest.java)
     - `ac.getBeansOfType()`을 사용하면 오류 없이 조회할 수 있습니다.
+- [상속 관계](https://github.com/lsw6684/Spring/tree/main/core/core/src/test/java/hello/core/beanfind/ApplicationContextExtendsFindTest.java)
+    - 부모 타입으로 조회하면, 자식 타입도 함께 조회됩니다.
+    - 모든 자바 객체의 최고 부모인 `Object`타입으로 조회 시, 모든 스프링 빈을 조회합니다.
 
+### BeanFactory & ApplicationContect
+- BeanFactory
+    - 스프링 컨테이너의 최상위 인터페이스입니다.
+    - 스프링 빈을 관리하고 조회하는 역할을 합니다.
+    - `getBean()`을 제공합니다.
 
+- ApplicationContext
+    - BeanFactory 기능을 모두 상속받아서 제공합니다.
+    - 빈 관리 기능 + 편리한 부가 기능을 제공합니다.
+    - **ApplicationContext가 제공하는 부가 기능**
+        1. 메시지소스를 활용한 국제화 기능
+            - 클라이언트에 따라 나라별 언어를 지원합니다.  
+        2. 환경 변수
+            - 로컬, 개발, 운영 서버를 구분해서 처리합니다.
+        3. 애플리케이션 이벤트
+            - 이벤트를 발행하고 구독하는 모델을 편리하게 지원합니다.
+        4. 편리한 리소스 조회
+            - 파일, 클래스패스, 외부 등에서 리소스를 편리하게 조회합니다.
+</br>
 
+즉, BeanFactory를 직접 사용할 일은 거의 없으며 부가 기능이 포함된 ApplicationContext를 주로 사용합니다.
 
 
 ### 컴포넌트 스캔 원리
