@@ -138,6 +138,8 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - `ac.getBean(타입)`
     - 조회 대상 스프링 빈이 없으면 예외 발생
         - `NoSuchBeanDefinitionException: No bean named 'xxx' available`
+- **타입으로 조회 시, 동일 타입이 둘 이상인 경우**
+    - `ac.getBeansOfType()`을 사용하면 오류 없이 조회할 수 있습니다.
 
 
 
