@@ -1,5 +1,6 @@
 # Spring
 자바 언어 기반의 프레임워크로 객체 지향 언어가 가진 강력한 특징을 쉽게 활용할 수 있게 도와주는 프레임워크입니다.
+
 - **DI(Dependency Injection, 의존성 주입, 의존 관계)** 와 **DI 컨테이너**를 제공하여 **다형성과 OCP, DIP**를 가능하도록 지원합니다.
     - **클라이언트 코드의 변경 없이 기능을 확장**할 수 있으며, 마치 부품을 교체하듯이 개발할 수 있음을 의미합니다.
 - 모든 설계에 인터페이스를 부여하는 것이 권장 되지만, 도입 시 **추상화**라는 비용이 발생하는 것을 인지해야 합니다.
@@ -14,6 +15,26 @@
         - 역할 == 인터페이스
         - 구현 == 인터페이스를 구현한 클래스, 구현 객체
 - **하지만, 다형성 만으로는 OCP, DIP를 지킬 수 없습니다.**
+
+### Spring Boot - https://start.spring.io/
+- [SOLID](#solid)
+- [IoC, DI, 그리고 컨테이너](#ioc-di-그리고-컨테이너)
+- [Maven vs Gradle](#maven-vs-gradle)
+- [Spring Boot Library](#spring-boot-library)
+- [Test Library](#test-library)
+- [Dependencies](#dependencies)
+- [Embedded server](#embedded-server)
+- [Business Requirement](#business-requirement)
+- [Spring Bean](#spring-bean)
+- [설정 형식 지원](#설정-형식-지원)
+- [Access to the Database](#access-to-the-database)
+- [스프링 설정 이미지](#스프링-설정-이미지)
+- [스프링 통합 테스트](#스프링-통합-테스트)
+- [스프링 JdbcTemplate](#스프링-jdbctemplate)
+- [JPA](#jpa)
+- [AOP](#aop)
+
+
 
 ## SOLID
 클린코드로 유명한 로버트 마틴이 정리한 객체 지향 설계의 5가지 권장 원칙
@@ -47,22 +68,6 @@
     - `BeanFactory`를 직접 사용하는 경우는 거의 없으므로, 일반적으로 `ApplicationContext`를 스프링 컨테이너라고 칭합니다.
     - *정리하자면, 개발자가 직접 자바코드로 했던 것을 **스프링 컨테이너**에 스프링 빈으로 객체를 등록하고, **스프링 컨테이너**에서 해당 스프링 빈을 찾아서 사용하는 구조입니다.*
 
-
-
-### Spring Boot - https://start.spring.io/
-- [Maven vs Gradle](#maven-vs-gradle)
-- [Spring Boot Library](#spring-boot-library)
-- [Test Library](#test-library)
-- [Dependencies](#dependencies)
-- [Embedded server](#embedded-server)
-- [Business Requirement](#business-requirement)
-- [Spring Bean](#spring-bean)
-- [Access to the Database](#access-to-the-database)
-- [스프링 설정 이미지](#스프링-설정-이미지)
-- [스프링 통합 테스트](#스프링-통합-테스트)
-- [스프링 JdbcTemplate](#스프링-jdbctemplate)
-- [JPA](#jpa)
-- [AOP](#aop)
 
 ## Maven vs Gradle
 ### Maven - Ant의 불편 해소 + 부가기능 추가
@@ -149,6 +154,7 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
     - 스프링 컨테이너의 최상위 인터페이스입니다.
     - 스프링 빈을 관리하고 조회하는 역할을 합니다.
     - `getBean()`을 제공합니다.
+    
 
 - ApplicationContext
     - BeanFactory 기능을 모두 상속받아서 제공합니다.
@@ -174,6 +180,16 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - `@Controller`
 - `@Service`
 - `@Repository`
+
+## 설정 형식 지원
+스프링 컨테이너는 다양한 형식의 설정 정보를 받아드릴 수 있게 설계되어 있습니다. ***(Java Code, XML, Groovy 등)***
+
+### 애노테이션 기반 자바 코드 설정 사용
+- `new AnnotationConfigApplicationContext(Application.class)`
+- `AnnotationConfigApplicationContext` 클래스를 사용하면서 자바 코드로된 설정 정보를 넘기면 됩니다.
+
+### XML 설정 사용
+- 최근에는 스프링 부트 사용률이 올라감으로 인해 잘 사용하지 않지만, 아직 많은 레거시 프로젝트들이 XML로 되어 있습니다. XML을 사용하면 컴파일 없이 빈 설정 정보를 변경할 수 있는 장점이 있습니다.
 
 ## Access to the Database
 - H2 Database <br />
