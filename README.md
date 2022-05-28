@@ -22,12 +22,13 @@
 - [Maven vs Gradle](#maven-vs-gradle)
 - [Spring Boot Library](#spring-boot-library)
 - [Test Library](#test-library)
-- [Dependencies](#dependencies)
 - [Embedded server](#embedded-server)
 - [Business Requirement](#business-requirement)
 - [Spring Bean](#spring-bean)
 - [설정 형식 지원](#설정-형식-지원)
 - [싱글톤](#싱글톤)
+- [Dependencies](#dependencies)
+- [컴포넌트 스캔](#컴포넌트-스캔)
 - [Access to the Database](#access-to-the-database)
 - [스프링 설정 이미지](#스프링-설정-이미지)
 - [스프링 통합 테스트](#스프링-통합-테스트)
@@ -63,6 +64,7 @@
 - IoC 컨테이너 == DI 컨테이너 == 스프링 컨테이너
     - 객체를 생성하고 관리하면서 의존 관계를 연결해 주는 것을 의미합니다.
     - `@Configuration`이 붙은 클래스를 사용하며, `@Bean`이라 적힌 메서드를 모두 호출하여 반환된 객체를 **스프링 컨테이너**에 등록합니다. 이렇게 등록된 객체를 **스프링 빈**이라 칭합니다.
+        - `@Bean`만 사용해도 **스프링 빈으로 등록 되지만, 싱글톤을 보장하진 않습니다.** 스프링 설정 정보는 항상 `@Configuration`을 사용해야 합니다.
     - 스프링 빈은 `@Bean`이 붙은 메서드 명을 이름으로써 사용하는데, `@Bean = (name = "any")` 로 변경 가능합니다. 하지만, 관례상 특별한 일이 없다면, 그대로 사용합니다. ***단, Bean 이름이 중복 되면 충돌***
     - `applicationContext.getBean()`메서드를 사용하여 스프링 빈을 찾을 수 있습니다.
     - XML 혹은 애노테이션 기반의 자바 설정 클래스로 만들 수 있으며 애노테이션을 주로 사용하는 추세입니다.
@@ -98,9 +100,7 @@
     - assertj : 테스트 코드를 좀 더 편하게 작성하게 도와주는 라이브러리
     - spring-test : 스프링 통합 테스트 지원
 
-## Dependencies
-- Spring web : Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
-- Thymeleaf : A modern server-side Java template engine for both web and standalone environments. Allows HTML to be correctly displayed in browsers and as static prototypes.
+
 
 ## Embedded server
 Tomcat(WAS) : Apache Tomcat이라고도 불리는 오픈소스 Web Application Server입니다. 
@@ -245,6 +245,38 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
     - 가급적 **읽기만 가능**해야 합니다.
     - 필드 대신, 자바에서 공유되지 않는 **지역변수, 파라미터, ThreadLocal 등을** 사용해야 합니다.
 - 스프링 빈의 필드에 공유 값을 설정하면, 큰 장애가 발생할 수 있습니다.
+
+---
+
+## Dependencies
+- Spring web : Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+- Thymeleaf : A modern server-side Java template engine for both web and standalone environments. Allows HTML to be correctly displayed in browsers and as static prototypes.
+
+---
+
+## 컴포넌트 스캔
+ 스프링 빈 등록 시, 자바 코드의 `@Bean`, 혹은 XML의 `<bean>`으로 직접 등록할 스프링 빈을 나열합니다. 하지만, 규모가 커질 수록 Human error로 누락할 가능성과 코드의 반복이 증가합니다. 이를 보완하기 위해, 스프링은 설정 정보 없이, 스프링 빈을 자동으로 등록하는 **컴포넌트 스캔**과, 의존 관계를 자동으로 주입하는 `@Autowired`를 제공합니다.
+- `basePackages` : 탐색할 패키지의 시작 위치를 지정하여 하위 패키지를 모두 탐색합니다.
+    - `basePackages = {"hello.core", "hello.service"}` : 여러 개의 시작 위치 지정 가능.
+    - `basePackageClasses` : 지정한 클래스의 패키지를 탐색 시작 위치로 지정합니다. 만약 지정하지 않으면 `@ComponentScan`이 붙은 설정 정보 클래스의 패키지가 시작 위치로 지정됩니다.
+
+### 권장 방법
+패키지 위치를 지정하기보단, 설정 정보 클래스의 위치를 프로젝트 최상단으로 지정합니다. 최근, 스프링 부트도 해당 방법을 디폴트로 제공합니다. 참고로, 스프링 부트 사용 시, 스프링 부트이 대표적인 시작 정보 `@SpringBootApplication`를 해당 프로젝트 시작 루트 위치에 두는 것이 관례입니다. ***(해당 설정 안에는 `@ComponentScan`이 들어있습니다.)***
+
+### 컴포넌트 스캔 기본 대상
+컴포넌트 스캔은 `@Component`뿐만 아니라 하위 내용도 대상에 포함합니다.
+- `@Component` : 컴포넌트 스캔에서 사용
+- `@Controller` : 스프링 MVC 컨트롤러에서 사용
+    - 스프링 MVC 커느롤러로 인식합니다.
+- `@Service` : 스프링 비즈니스 로직에서 사용
+    - 특별히 처리하는 작업은 없습니다. 개발자 입장에서 핵심 비즈니스 로직/계층을 인식할 수 있도록 합니다.
+- `@Repository` : 스프링 데이터 접근 계층에서 사용
+    - 스프링 데이터 접근 계층으로 인식하며, 데이터 계층의 예외를 스프링 예외로 변환합니다.
+- `@Configuration` : 스프링 설정 정보에서 사용
+    - 스프링 설정 정보로 인식하며, 스프링 빈이 싱글톤을 유지하도록 추가 처리를 합니다.
+
+
+
 ---
 
 ## Access to the Database
