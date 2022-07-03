@@ -169,8 +169,10 @@ HTTP 요청 시
 ### `@WebServlet`
 - name : 서블릿 이름
 - urlPatterns : URL 매핑
-    - name과 urlPatterns는 중복을 피해야 합니다.
-
+    - name과 urlPatterns 값은 중복을 피해야 합니다.
+- HTTP 요청을 통해 매핑된 URL이 호출 되면, 서블릿 컨테이너는 다음 메서드를 실행합니다.
+    - `protected void service(HttpServletRequest request, HttpServletResponse response)`
+    
 ## 쓰레드
 - 애플리케이션 코드를 순차적으로 실행합니다.
     - 자바 메인 메서드를 처음 실행하면 **main이라는 이름의 쓰레드가 실행**
