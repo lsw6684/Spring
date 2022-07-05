@@ -134,6 +134,11 @@ ex) Tomcat Jetty, Undertow
 ## Servlet
 - urlPatterns(/hello)의 URL이 호출되면 서블릿 코드가 실행됩니다.
 - **HttpServletRequest** : HTTP 요청 정보를 편리하게 사용할 수 있습니다.
+    - **임시 저장소 기능** : 해당 HTTP 요청의 시작부터 끝까지 유지되는 임시 저장소.
+        - 저장 : `request.setAttribute(name, value)`
+        - 조회 : `request.getAttribute(name)`
+    - **세션 관리 기능**
+        - `request.getSession(create: true)`
 - **HttpServletResponse** : HTTP 응답 정보를 편리하게 제공합니다.
 - HTTP 스펙을 매우 편리하게 사용할 수 있습니다.
 ```java
@@ -172,7 +177,7 @@ HTTP 요청 시
     - name과 urlPatterns 값은 중복을 피해야 합니다.
 - HTTP 요청을 통해 매핑된 URL이 호출 되면, 서블릿 컨테이너는 다음 메서드를 실행합니다.
     - `protected void service(HttpServletRequest request, HttpServletResponse response)`
-    
+
 ## 쓰레드
 - 애플리케이션 코드를 순차적으로 실행합니다.
     - 자바 메인 메서드를 처음 실행하면 **main이라는 이름의 쓰레드가 실행**
