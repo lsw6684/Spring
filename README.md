@@ -24,6 +24,7 @@
 - [Test Library](#test-library)
 - [Embedded server](#embedded-server)
 - [Web Server](#web-server)
+- [HTTP](#http)
 - [WAS](#was)
 - [Servlet](#servlet)
 - [동시 요청 - 멀티 쓰레드](#동시-요청---멀티-쓰레드)
@@ -109,6 +110,23 @@
 ## Embedded server
 Tomcat(WAS) : Apache Tomcat이라고도 불리는 오픈소스 Web Application Server입니다. 
 <p align="center"><img src="images/tomcat.png" width="70%"></p>
+
+## HTTP
+HTTP 요청 메시지를 통해, 클라이언트에서 서버로 데이터를 전달하는 방식은 주로 3가지가 있습니다.
+- GET - 쿼리 파라미터
+    - `http://localhost:8080/request-param?username=hello&age=20`
+    - 쿼리 파라미터는 `?`를 시작으로 하며 `&`으로 구분.
+    - 메시지 바디 없이, URL의 쿼리 파라미터에 데이터를 포함하여 전달.
+    
+    - ex) 검색, 필터, 페이징 등
+- POST - HTML Form
+    - content-type: application/x-www-form-urlencoded
+    - 메시지 바디에 쿼리 파라미터 형식으로 전달 `username=hello&age=20`
+    - ex) 회원 가입, 상품 주문, HTML Form 사용
+- HTTP message body에 데이터를 직접 담아서 요청
+    - HTTP API에서 주로 사용, JSON, XML, TEXT
+    - 데이터 형식은 주로 JSON 사용
+    - POST, PUT, PATCH
 
 
 ## Web Server
