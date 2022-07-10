@@ -127,6 +127,15 @@ HTTP 요청 메시지를 통해, 클라이언트에서 서버로 데이터를 �
     - 데이터 형식은 주로 JSON 사용
     - POST, PUT, PATCH
 
+### HttpServletResponse
+#### HTTP 응답 메시지 생성
+- HTTP 응답코드 지정
+- 헤더 생성
+- 바디 생성
+
+#### 편의 기능 제공
+- Content-Type, 쿠키, Redirect
+
 
 ## Web Server
 1. HTTP 기반으로 동작 <br />
