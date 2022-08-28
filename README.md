@@ -27,6 +27,7 @@
 - [HTTP](#http)
 - [WAS](#was)
 - [Servlet](#servlet)
+- [DispatcherServlet](#dispatcherservlet)
 - [동시 요청 - 멀티 쓰레드](#동시-요청---멀티-쓰레드)
 - [Business Requirement](#business-requirement)
 - [Spring Bean](#spring-bean)
@@ -203,6 +204,21 @@ HTTP 요청 시
     - name과 urlPatterns 값은 중복을 피해야 합니다.
 - HTTP 요청을 통해 매핑된 URL이 호출 되면, 서블릿 컨테이너는 다음 메서드를 실행합니다.
     - `protected void service(HttpServletRequest request, HttpServletResponse response)`
+
+## DispatcherServlet
+Servlet/JSP에서 사용자 요청이 발생하면, 이 요청 정보를 해석하고 작성된 코드를 동작시키는 첫 번째 서블릿입니다. Spring MVC는 DispatcherServlet을 확대하여 Spring Framework의 기능을 사용할 수 있도록 해당 클래스를 재정의합니다. <br />
+
+### 설정 방식
+Spring MVC 프로젝트 설정 시 가장 먼저 DispatcherServlet 클래스를 Spring MVC에서 재정의한 클래스로 설정해야 합니다.
+- XML 이용
+
+- Java 코드 활용
+
+
+
+`요청이 발생했을 때 DispatcherServlet이 받으며 WebApplicationContext(Model 역할)의 Controllers 중, 해당하는 Controller 작업을 수행 후 ViewResolver가 JSP로 포워딩합니다.`
+
+
 
 ## 쓰레드
 - 애플리케이션 코드를 순차적으로 실행합니다.
