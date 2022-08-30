@@ -214,10 +214,11 @@ Spring MVC 프로젝트 설정 시 가장 먼저 DispatcherServlet 클래스를 
 
 - Java 코드 활용
 
-
-
 `요청이 발생했을 때 DispatcherServlet이 받으며 WebApplicationContext(Model 역할)의 Controllers 중, 해당하는 Controller 작업을 수행 후 ViewResolver가 JSP로 포워딩합니다.`
 
+### 템플릿 엔진
+자바 코드로 HTML전체를 만들어 내는 것 보다, HTML의 일부 필요한 부분만을 동적으로 출력하기 위해 등장했습니다.
+- `JSP`, `Thymeleaf`, `Freemarker`, `Velocity`
 
 
 ## 쓰레드
