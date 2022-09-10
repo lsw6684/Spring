@@ -225,6 +225,8 @@ Spring MVC 프로젝트 설정 시 가장 먼저 DispatcherServlet 클래스를 
 - Servlet : View에 HTML과 Java코드가 섞인 이유로 지저분하고 복잡합니다.
 - JSP : View를 생성하는 HTML은 깔끔하지만, 특정 부분에 Java코드를 사용함으로써 View와 비즈니스 로직이 섞인 채로 구현 됩니다. 즉, JSP가 너무 많은 역할을 하며 내부 논리가 노출 되는 상태가 됩니다. 그리고 이러한 한계를 극복하기 위해 MVC 패턴이 등장합니다.
 
+---
+
 ## MVC
 
 ### 등장 베경
@@ -245,6 +247,34 @@ Controller에 비즈니스 로직을 둘 수도 있지만, 이렇게 되면 Cont
 ```
 - `dispatcher.forward()` : 다른 서블릿이나 JSP로 이동할 수 있습니다. 서버 내부에서 다시 호출이 발생합니다.
 - `redirect vs forward` : `redirect`는 실제 클라이언트(웹 브라우저)에 응답이 나갔다가, 클라이언트가 `redirect`경로로 다시 요청합니다. 따라서 클라이언트가 인지할 수 있고, URL 경로도 실제로 변경됩니다. 반면에 `forward`는 서버 내부에서 일어나는 호출이기 때문에 클라이언트가 전혀 인지하지 못합니다.
+
+### MVC의 한계
+MVC 패턴 적용 후 컨트롤러의 역할과 뷰를 렌더링 하는 역할을 명확하게 구분할 수 있게 되었습니다. 뷰는 화면 출력 역할에 충실한 덕분에, 코드가 깔끔하고 직관적입니다. 단순하게 모델에서 필요한 데이터를 꺼내고 화면을 만든다고 할 수 있습니다. 하지만, 컨트롤러는 중복이 많고 필요하지 않은 코드들도 많이 보입니다.
+
+#### MVC 컨트롤러의 단점
+- 포워드 중복 : View로 이동하는 코드가 항상 중복 호출되어야 합니다. 물론 이 부분을 메서드로 공통화해도 되지만, 해당 메서드도 항상 직접 호출해야 합니다.
+    ```java
+    RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+    dispatcher.ofrward(request, response);
+
+    // View Path 중복
+    String viewpath = "/WEB-INF/views/new-form.jsp";
+    ```
+- Dependency : jsp, thymeleaf 등 다른 뷰로 변경 시 전체 코드를 변경해야 합니다.
+- 사용하지 않는 코드 : 다음 코드가 사용될 때도 있지만 사용 안 될 때도 있습니다.
+    ```java
+    HttpServletRequest request, HttpServletResponse response
+    ```
+- 공통 처리 : 기능이 복잡해질 수록 Controller에서 공통으로 처리해야 하는 부분이 더욱 증가할 것입니다. 단순히 공통 기능을 메서드로 뽑으면 될 것 같지만, 결과적으로 해당 메서드를 항상 호출해야 하고, 실수로 호출 하지 않으면 문제가 됩니다. `호출하는 것 자체도 중복`
+- 정리하자면 공통 처리가 어렵습니다. 이 문제를 해결하기 위해, Controller 호출 전에 먼저 공통 기능을 처리해야 합니다. 소위 수문장 역할을 하는 기능이 필요합니다. 프론트 컨트롤러(Front Controller) 패턴을 도입하면 이러한 문제를 해결할 수 있습니다.
+
+### FrontController 패턴 특징
+- 프론트 컨트롤러 서블릿 하나로 클라이언트 요청을 모두 받습니다.
+- 요청에 맞는 컨트롤러를 찾아서 호출합니다.
+- 입구를 하나로 하여 공통처리 하며, 프론트컨트롤러를 제외한 나머지 컨트롤러는 서블릿을 사용하지 않아도 됩니다.
+- 스프링 웹 MVC의 핵심이 바로 **FrontController**이며 **DispatcherServlet**이 **FrontController 패턴**으로 구현되어 있습니다.
+
+
 ---
 
 ## 쓰레드
