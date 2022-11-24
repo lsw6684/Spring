@@ -426,6 +426,19 @@ Spring IoC 컨테이너가 관리하는 자바 객체를 의미합니다. new로
 - `@Service`
 - `@Repository`
 
+<br />
+
+## Logging
+
+- `@RestController`
+    - `@Controller`는 반환 값이 `String`이면 뷰 이름으로 인식 됩니다. 
+        - View를 찾고 View를 렌더링
+    - `@RestController`는 반환 값으로 View를 찾는 것이 아니라, **HTTP 메시지 바디에 바로 입력**합니다. 따라서 실행 결과로 return 메시지를 받을 수 있습니다.
+
+
+
+<br />
+
 ## 설정 형식 지원
 스프링 컨테이너는 다양한 형식의 설정 정보를 받아드릴 수 있게 설계되어 있습니다. ***(Java Code, XML, Groovy 등)***
 
